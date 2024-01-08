@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 import Shortener from './../_utils/Shortener';
 import { v4 as uuid } from 'uuid';
@@ -14,6 +14,10 @@ const UrlSnip = () => {
     setLinkHistory(parsed);
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
+  }, [linkHistory]);
+
   const handleInput = async (input: string) => {
     const url = await Shortener(input);
     const link: Link = {
@@ -23,14 +27,24 @@ const UrlSnip = () => {
       shortURL: url.shortURL,
     };
 
-      setLinkHistory((linkHistory) => [...linkHistory, link]);
-      localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
+    setLinkHistory((linkHistory) =>
+      linkHistory.length > 0 ? [...linkHistory, link] : [link]
+    );
   };
 
+  const deleteLink = (linkId: string) => {
+    setLinkHistory((prevLinks) => {
+      const updatedList = prevLinks.filter((link) => link.id !== linkId);
+      return updatedList;
+    });
+
+    localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
+  };
+  
   return (
     <>
       <Input onInput={handleInput} />
-      {/* <History {...linkHistory} /> */}
+      <History links={linkHistory} deleteLink={deleteLink} />
     </>
   );
 };

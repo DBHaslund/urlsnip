@@ -1,14 +1,17 @@
 import Url from './Url';
 
-const History = ({ ...linkHistory }: Link[]) => {
-  const links = [linkHistory[0]]
-  console.log(links)
+interface Props {
+  links: any;
+  deleteLink: (linkId: string) => void;
+}
 
+const History = ({ links, deleteLink }: Props) => {
   return (
     <ul>
-      {links.length > 0 && links.map((link) => (
-        <Url key={link.id} {...link} />
-      ))}
+      {links.length > 0 &&
+        links.map((link: any) => (
+          <Url key={link.id} deleteLink={deleteLink} {...link} />
+        ))}
     </ul>
   );
 };
