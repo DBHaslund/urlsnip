@@ -6,7 +6,7 @@ const Shortener = async (longURL: string | undefined) => {
     domain: 'l.bzyhas.com',
     originalURL: longURL,
     allowDuplicates: false,
-    tags: ['t'],
+    tags: ['urlsnip'],
   };
 
   try {

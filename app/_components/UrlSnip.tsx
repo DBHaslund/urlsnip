@@ -7,6 +7,7 @@ import Input from './Input';
 
 const UrlSnip = () => {
   const [linkHistory, setLinkHistory] = useState<Link[]>([]);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     const data = localStorage.getItem('linkHistory');
@@ -15,7 +16,10 @@ const UrlSnip = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
+    if (!firstLoad) {
+      localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
+    }
+    setFirstLoad(false);
   }, [linkHistory]);
 
   const handleInput = async (input: string) => {
@@ -40,7 +44,7 @@ const UrlSnip = () => {
 
     localStorage.setItem('linkHistory', JSON.stringify(linkHistory));
   };
-  
+
   return (
     <>
       <Input onInput={handleInput} />
