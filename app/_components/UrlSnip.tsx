@@ -46,7 +46,7 @@ const UrlSnip = () => {
   };
 
   return (
-    <div className='w-4/5 mx-auto mt-40 bg-purple-950 py-20'>
+    <div className='w-4/5 mx-auto mt-40 bg-purple-950 py-20 rounded-xl'>
       <h1 className='text-[#c91dcc] text-7xl text-center pb-20'>URLSnip</h1>
       <Input onInput={handleInput} />
       <History links={linkHistory} deleteLink={deleteLink} />

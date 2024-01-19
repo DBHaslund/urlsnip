@@ -7,7 +7,7 @@ interface Props {
 
 const History = ({ links, deleteLink }: Props) => {
   return (
-    <ul className='w-4/5 mx-auto'>
+    <ul className='mx-12 text-center'>
       {links.length > 0 &&
         links.map((link: any) => (
           <Url key={link.id} deleteLink={deleteLink} {...link} />
