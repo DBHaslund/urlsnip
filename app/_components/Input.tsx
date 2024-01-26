@@ -33,7 +33,7 @@ const Input = ({ onInput }: any) => {
         <input
           ref={inputRef}
           type='url'
-          className={`w-full text-center outline-none focus:outline-[#c91dcc] border-2 ${invalid}`}
+          className={`w-full text-center bg-offwhite outline-none focus:outline-[#c91dcc] border-2 ${invalid}`}
           value={userInput}
           onChange={inputHandler}
           onFocus={() => setInvalidInput(false)}
