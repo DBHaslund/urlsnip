@@ -2,9 +2,10 @@
 import { useState } from 'react';
 
 interface Props {
-  shortURL: string;
   id: string;
-  originalURL: string,
+  createdAt: Date;
+  originalURL: string;
+  shortURL: string;
   deleteLink: (linkId: string) => void;
 }
 
@@ -43,10 +44,7 @@ const Url = ({ deleteLink, ...link }: Props) => {
         </div>
         <div>
           <p>Short link:</p>
-          <a
-            href={link.shortURL}
-            className='md:text-xl my-auto font-semibold'
-          >
+          <a href={link.shortURL} className='md:text-xl my-auto font-semibold'>
             {link.shortURL}
           </a>
         </div>
