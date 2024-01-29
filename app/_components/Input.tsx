@@ -7,7 +7,7 @@ const Input = ({ onInput }: any) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = () => {
-    if ( /* inputRef.current?.checkValidity() && */ inputRef.current?.value != '') {
+    if (inputRef.current?.checkValidity() && inputRef.current?.value != '') {
       setInvalidInput(false);
       onInput(inputRef.current?.value);
       setUserInput('');
@@ -31,13 +31,14 @@ const Input = ({ onInput }: any) => {
           </p>
         )}
         <input
+          placeholder='https:// ...'
           ref={inputRef}
           type='url'
           className={`w-full text-center bg-offwhite outline-none focus:outline-[#c91dcc] border-2 ${invalid}`}
           value={userInput}
           onChange={inputHandler}
           onFocus={() => setInvalidInput(false)}
-          onKeyUp={(e) => e.key === 'Enter' ? submitHandler() : null}
+          onKeyUp={(e) => (e.key === 'Enter' ? submitHandler() : null)}
         />
       </div>
       <button
